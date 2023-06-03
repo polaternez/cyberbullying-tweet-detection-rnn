@@ -1,9 +1,9 @@
 # Cyberbullying Tweet Detector 2: Project Overview  
-* This tool was created to cyberbullying tweet type(not_cyberbullying, gender, religion, other_cyberbullying, age, ethnicity) prediction
+* This tool was created to flag cyberbullying tweets. This is for classifying tweets by type(not_cyberbullying, gender, religion, other_cyberbullying, age, ethnicity)
 * Take Cyberbullying Classification Dataset from Kaggle
 * Cleaning the data
 * Apply data preprocessing steps to cleaned data
-* Build LSTM(Long Short-Term Memory) model,then evaluate them on test dataset
+* Build Recurrent Neural Network(RNN) using Long Short-Term Memory(LSTM) layers, then evaluate them on test dataset
 * Built a client facing API using Flask 
 
 Note: This project was made for educational purposes.
@@ -35,10 +35,13 @@ We create a python script to clear text data, its apply the following operations
 * Lemmatize/ Stem words
 * Remove URLs
 
+## Data Preprocessing
+We apply the TextVectorization layer from Keras to previously cleaned tweets. This layer one-hot encodes text, returning a list of encoded integers, each corresponding to a word (or token) in the given input string, and then pads sequences to the same length.
+
 
 ## Model Building 
 
-First, we apply TextVectorization to clean tweets for one-hot encoding and padding them. Then split the data into train and test sets with a test size of 20%. After that, We build following LSTM(Long Short-Term Memory) model:
+First, we split the data into train and test sets with a test size of 20%. After that, we build following RNN using Bidirectional LSTM layers:
 
 ![alt text](https://github.com/polaternez/cyberbullying_tweets_proj_v2/blob/documentation/images/model.png "LSTM Model")
 
