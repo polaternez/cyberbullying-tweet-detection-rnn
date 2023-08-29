@@ -1,5 +1,5 @@
 # Cyberbullying Tweet Detector 2: Project Overview  
-* This tool was created to flag cyberbullying tweets. This is for classifying tweets by type(not_cyberbullying, gender, religion, other_cyberbullying, age, ethnicity)
+This tool was created to flag cyberbullying tweets. This is for classifying tweets by type(not_cyberbullying, gender, religion, other_cyberbullying, age, ethnicity)
 * Take Cyberbullying Classification Dataset from Kaggle
 * Cleaning the data
 * Apply data preprocessing steps to cleaned data
