@@ -3,7 +3,7 @@ from flask import Flask, request, render_template
 import numpy as np
 import pandas as pd
 import tensorflow as tf
-from tensorflow.keras import layers
+from keras import layers
 from keras.models import load_model
 import text_cleaning as tc
 

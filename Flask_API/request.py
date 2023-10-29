@@ -7,6 +7,6 @@ data = {"input": [
     'Yea fuck you RT @therealexel: IF YOURE A NIGGER FUCKING UNFOLLOW ME, FUCKING DUMB NIGGERS.',
     'Bro. U gotta chill RT @CHILLShrammy: Dog FUCK KP that dumb nigger bitch lmao'
 ]}
-r = requests.post(url, json=data)
 
+r = requests.post(url, json=data)
 print(r.text)
