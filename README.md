@@ -9,9 +9,9 @@ This tool was created to flag cyberbullying tweets. This is for classifying twee
 Note: This project was made for educational purposes.
 
 ## Code and Resources Used 
-**Python Version:** 3.7  
+**Python Version:** 3.10  
 **Packages:** numpy, pandas, matplotlib, seaborn, nltk, tensorflow, sklearn, flask, json  
-**For Flask API Requirements:**  ```pip install -r requirements.txt```  
+**Create Anaconda Environment for Flask API:**  ```conda env create -n <ENVNAME> -f environment.yaml```  
 **For Dataset:** https://www.kaggle.com/datasets/andrewmvd/cyberbullying-classification
 
 ## Getting Data
