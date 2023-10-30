@@ -11,8 +11,9 @@ Note: This project was made for educational purposes.
 ## Code and Resources Used 
 **Python Version:** 3.10  
 **Packages:** numpy, pandas, matplotlib, seaborn, nltk, tensorflow, sklearn, flask, json  
+**Flask API Requirements:**  ```pip install -r requirements.txt```  
 **Create Anaconda Environment for Flask API:**  ```conda env create -n <ENVNAME> -f environment.yaml```  
-**For Dataset:** https://www.kaggle.com/datasets/andrewmvd/cyberbullying-classification
+**Dataset:** https://www.kaggle.com/datasets/andrewmvd/cyberbullying-classification
 
 ## Getting Data
 We use the <a href="https://www.kaggle.com/datasets/andrewmvd/cyberbullying-classification">Cyberbullying Classification</a> dataset from Kaggle. This dataset contains more than 47000 tweets labelled according to the class of cyberbullying:
