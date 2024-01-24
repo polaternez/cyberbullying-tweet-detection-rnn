@@ -24,7 +24,7 @@ We use the <a href="https://www.kaggle.com/datasets/andrewmvd/cyberbullying-clas
 * Age
 * Ethnicity
 
-![alt text](https://github.com/polaternez/cyberbullying_tweets_proj_v2/blob/documentation/images/cyberbullying_type_counts.jpg "Cyberbullying Type Counts")
+![alt text](https://github.com/polaternez/cyberbullying-tweet-detection-rnn/blob/master/reports/figures/cyberbullying_type_counts.jpg "Cyberbullying Type Counts")
 
 
 ## Data Cleaning
@@ -44,16 +44,16 @@ We apply the TextVectorization layer from Keras to previously cleaned tweets. Th
 
 First, we split the data into train and test sets with a test size of 20%. After that, we build following RNN using Bidirectional LSTM layers:
 
-![alt text](https://github.com/polaternez/cyberbullying_tweets_proj_v2/blob/documentation/images/model.png "LSTM Model")
+![alt text](https://github.com/polaternez/cyberbullying-tweet-detection-rnn/blob/master/reports/figures/model.png "LSTM Model")
 
 We measure the model loss with "categorical_crossentropy" and optimize the model with "RMSprop". After training, we get the following results:
 
-![alt text](https://github.com/polaternez/cyberbullying_tweets_proj_v2/blob/documentation/images/results.jpg "Model Performances")
+![alt text](https://github.com/polaternez/cyberbullying-tweet-detection-rnn/blob/master/reports/figures/results.jpg "Model Performances")
 
 ## Productionization 
 In this step, we created the UI with the Flask. API endpoint help receives a request tweets and returns the results of the cyberbullying type prediction.
 
-![alt text](https://github.com/polaternez/cyberbullying_tweets_proj_v2/blob/documentation/images/flask-api.png "Cyberbullying Tweet Detector 2")
+![alt text](https://github.com/polaternez/cyberbullying-tweet-detection-rnn/blob/master/reports/figures/flask-api.png "Cyberbullying Tweet Detector 2")
 
 
 
