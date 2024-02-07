@@ -7,13 +7,24 @@ from keras import layers
 from keras.models import load_model
 import text_cleaning as tc
 
+
 VOCAB_SIZE = 50000  # vocabulary size
 MAX_LEN = 200
 
 # cyberbullying types
-label_dict = {0: 'not_cyberbullying', 1: 'gender', 2: 'religion', 3: 'other_cyberbullying', 4: 'age', 5: 'ethnicity'}
+label_dict = {
+    0: 'not_cyberbullying',
+    1: 'gender',
+    2: 'religion',
+    3: 'other_cyberbullying',
+    4: 'age',
+    5: 'ethnicity'
+}
 
-# Vectorization layer is adapted
+# Load the model
+model = load_model("models/cyberbullying_lstm.h5")
+
+# Adapt vectorization layer
 cleaned_tweets_df = pd.read_csv("data/cleaned_tweets.csv")
 cleaned_tweets_df.dropna(inplace=True)
 
@@ -23,11 +34,7 @@ vectorize_layer = tf.keras.layers.TextVectorization(
     output_mode='int',
     output_sequence_length=MAX_LEN
 )
-
 vectorize_layer.adapt(cleaned_tweets_df["clean_text"])
-
-# Load the model
-model = load_model("models/cyberbullying_lstm.h5")
 
 # WSGI
 app = Flask(__name__)
@@ -35,7 +42,6 @@ app = Flask(__name__)
 @app.route("/")
 def home():
     return render_template("index.html")
-
 
 @app.route("/predict", methods=["POST"])
 def predict():
@@ -53,7 +59,6 @@ def predict():
     
     return render_template("index.html", prediction_text=output_text, tweet=f"<< {new_data} >>")
 
-
 @app.route("/predict_api", methods=["POST"])
 def predict_api():
     '''
@@ -70,9 +75,10 @@ def predict_api():
     # output
     output = np.argmax(prediction, axis=1)
     output_text = [label_dict[x] for x in output]
-    
     response = json.dumps({'response': output_text})
+
     return response, 200
+
 
 if __name__ == "__main__":
     app.run(debug=True)
