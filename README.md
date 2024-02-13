@@ -1,13 +1,11 @@
 # Cyberbullying Tweet Detector 2: Project Overview  
-This tool flags potential cyberbullying tweets by classifying them by type (not_cyberbullying, gender, religion, other_cyberbullying, age, ethnicity).
+This project aims to develop a tool for identifying cyberbullying tweets and classifying them based on various categories such as gender, religion, age, ethnicity, and other types of cyberbullying. The primary objectives include:
 
-* Take Cyberbullying Classification Dataset from Kaggle
-* Cleaning the data
-* Apply data preprocessing steps to cleaned data
-* Build Recurrent Neural Network(RNN) using Long Short-Term Memory(LSTM) layers, then evaluate them on test dataset
-* Built a client facing API using Flask 
-
-Note: This project was made for educational purposes.
+- Utilizing the Cyberbullying Classification Dataset sourced from Kaggle.
+- Conducting data cleaning procedures to enhance data quality.
+- Applying data preprocessing techniques to prepare the cleaned data for analysis.
+- Constructing a Recurrent Neural Network (RNN) model using Long Short-Term Memory (LSTM) layers and evaluating its performance on a separate test dataset.
+- Implementing a client-facing API using Flask for seamless integration and usability.
 
 ## Technologies and Resources
 * **Python Version:** 3.10  
@@ -18,43 +16,48 @@ Note: This project was made for educational purposes.
    
 * **Dataset:** https://www.kaggle.com/datasets/andrewmvd/cyberbullying-classification
 
-## Getting Data
-We use the <a href="https://www.kaggle.com/datasets/andrewmvd/cyberbullying-classification">Cyberbullying Classification</a> dataset from Kaggle. This dataset contains more than 47000 tweets labelled according to the class of cyberbullying:
-* Not Cyberbullying
-* Gender
-* Religion
-* Other type of cyberbullying
-* Age
-* Ethnicity
+## Data Acquisition
+The project relies on the [Cyberbullying Classification Dataset](https://www.kaggle.com/datasets/andrewmvd/cyberbullying-classification) obtained from Kaggle. This dataset comprises over 47,000 labeled tweets categorized into distinct classes of cyberbullying.
+
+- Not Cyberbullying
+- Gender
+- Religion
+- Other types of cyberbullying
+- Age
+- Ethnicity
 
 ![alt text](https://github.com/polaternez/cyberbullying-tweet-detection-rnn/blob/master/reports/figures/cyberbullying_type_counts.jpg "Cyberbullying Type Counts")
 
 
 ## Data Cleaning
-We create a python script to clear text data, its apply the following operations to the text:
-* Removing Puncuatations
-* Removing Numbers
-* Lowecasing the data
-* Remove stop words
-* Lemmatize/ Stem words
-* Remove URLs
+A custom Python script is developed to perform rigorous data cleaning processes. These processes involve:
+
+- Removal of punctuation marks
+- Elimination of numerical characters
+- Conversion of text to lowercase
+- Elimination of stop words
+- Lemmatization/Stemming of words
+- Removal of URLs
 
 ## Data Preprocessing
-We apply the TextVectorization layer from Keras to previously cleaned tweets. This layer one-hot encodes text, returning a list of encoded integers, each corresponding to a word (or token) in the given input string, and then pads sequences to the same length.
-
+To prepare the cleaned tweets for analysis, the TextVectorization layer from Keras is applied. This layer facilitates one-hot encoding of text, resulting in a list of encoded integers representing individual words (or tokens) in the input string. Additionally, sequences are padded to ensure uniform length.
 
 ## Model Building 
+1. **Train-Test Split:** Data is divided into 80% training and 20% testing sets.
+2. **Bidirectional LSTM Model:** Build an RNN architecture utilizing Bidirectional LSTM layers.
 
-First, we split the data into train and test sets with a test size of 20%. After that, we build following RNN using Bidirectional LSTM layers:
+**Model Visualization:**
 
 ![alt text](https://github.com/polaternez/cyberbullying-tweet-detection-rnn/blob/master/reports/figures/model.png "LSTM Model")
 
-We measure the model loss with "categorical_crossentropy" and optimize the model with "RMSprop". After training, we get the following results:
+3. **Evaluation:** We employ "categorical_crossentropy" for loss measurement and "RMSprop" for optimization.
+
+**Model Performance:**
 
 ![alt text](https://github.com/polaternez/cyberbullying-tweet-detection-rnn/blob/master/reports/figures/results.jpg "Model Performances")
 
 ## Productionization 
-In this step, we created the UI with the Flask. API endpoint help receives a request tweets and returns the results of the cyberbullying type prediction.
+A Flask-based user interface (UI) allows users to submit tweets and receive cyberbullying type predictions in real-time.
 
 ![alt text](https://github.com/polaternez/cyberbullying-tweet-detection-rnn/blob/master/reports/figures/flask-api.png "Cyberbullying Tweet Detector 2")
 
