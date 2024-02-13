@@ -1,5 +1,6 @@
 # Cyberbullying Tweet Detector 2: Project Overview  
-This tool was created to flag cyberbullying tweets. This is for classifying tweets by type(not_cyberbullying, gender, religion, other_cyberbullying, age, ethnicity)
+This tool flags potential cyberbullying tweets by classifying them by type (not_cyberbullying, gender, religion, other_cyberbullying, age, ethnicity).
+
 * Take Cyberbullying Classification Dataset from Kaggle
 * Cleaning the data
 * Apply data preprocessing steps to cleaned data
@@ -8,12 +9,14 @@ This tool was created to flag cyberbullying tweets. This is for classifying twee
 
 Note: This project was made for educational purposes.
 
-## Code and Resources Used 
-**Python Version:** 3.10  
-**Packages:** numpy, pandas, matplotlib, seaborn, nltk, tensorflow, sklearn, flask, json  
-**Flask API Requirements:**  ```pip install -r requirements.txt```  
-**Create Anaconda Environment for Flask API:**  ```conda env create -n <ENVNAME> -f environment.yaml```  
-**Dataset:** https://www.kaggle.com/datasets/andrewmvd/cyberbullying-classification
+## Technologies and Resources
+* **Python Version:** 3.10  
+* **Libraries:** numpy, pandas, matplotlib, seaborn, nltk, tensorflow, sklearn, flask, json  
+* **Flask API Setup:**
+  * ```pip install -r requirements.txt```  
+  *  ```conda env create -n <ENVNAME> -f environment.yaml```  (Anaconda environment)
+   
+* **Dataset:** https://www.kaggle.com/datasets/andrewmvd/cyberbullying-classification
 
 ## Getting Data
 We use the <a href="https://www.kaggle.com/datasets/andrewmvd/cyberbullying-classification">Cyberbullying Classification</a> dataset from Kaggle. This dataset contains more than 47000 tweets labelled according to the class of cyberbullying:
