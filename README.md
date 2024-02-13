@@ -1,4 +1,4 @@
-# Cyberbullying Tweet Detector 2: Project Overview  
+# Analyzing Cyberbullying Tweets with LSTM Networks 
 This project aims to develop a tool for identifying cyberbullying tweets and classifying them based on various categories such as gender, religion, age, ethnicity, and other types of cyberbullying. The primary objectives include:
 
 - Utilizing the Cyberbullying Classification Dataset sourced from Kaggle.
