@@ -50,7 +50,7 @@ To prepare the cleaned tweets for analysis, the TextVectorization layer from Ker
 
 ![alt text](https://github.com/polaternez/cyberbullying-tweet-detection-rnn/blob/master/reports/figures/model.png "LSTM Model")
 
-3. **Evaluation:** We employ "categorical_crossentropy" for loss measurement and "RMSprop" for optimization.
+3. **Evaluation:** Employ "categorical_crossentropy" for loss measurement and "RMSprop" for optimization.
 
 **Model Performance:**
 
