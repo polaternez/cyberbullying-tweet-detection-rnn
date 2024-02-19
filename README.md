@@ -45,12 +45,11 @@ To prepare the cleaned tweets for analysis, the TextVectorization layer from Ker
 ## Model Building 
 1. **Train-Test Split:** Data is divided into 80% training and 20% testing sets.
 2. **Bidirectional LSTM Model:** Build an RNN architecture utilizing Bidirectional LSTM layers.
+3. **Evaluation:** Employ "categorical_crossentropy" for loss measurement and "RMSprop" for optimization.
 
 **Model Visualization:**
 
 ![alt text](https://github.com/polaternez/cyberbullying-tweet-detection-rnn/blob/master/reports/figures/model.png "LSTM Model")
-
-3. **Evaluation:** Employ "categorical_crossentropy" for loss measurement and "RMSprop" for optimization.
 
 **Model Performance:**
 
