@@ -19,7 +19,7 @@ from nltk.corpus import stopwords
 # for cleaning tweets
 lemmatizer = WordNetLemmatizer()
 
-def clean_data(tweet):
+def clean_text(tweet: str) -> str:
     tweet = re.sub("[@&]\w*", "", tweet)
     tweet = re.sub("https?:\S*", "", tweet)
     tweet = re.sub("[^A-Za-z#]", " ", tweet)
