@@ -9,7 +9,7 @@ This project aims to develop a tool for identifying cyberbullying tweets and cla
 
 ## Technologies and Resources
 * **Python Version:** 3.10  
-* **Libraries:** numpy, pandas, matplotlib, seaborn, nltk, tensorflow, sklearn, flask, json  
+* **Libraries:** numpy, pandas, matplotlib, seaborn, nltk, tensorflow, scikit-learn, flask, json  
 * **Flask API Setup:**
   * ```pip install -r requirements.txt```  
   *  ```conda env create -n <ENVNAME> -f environment.yaml```  (Anaconda environment)
