@@ -2,9 +2,11 @@ import json
 from flask import Flask, request, render_template
 import numpy as np
 import pandas as pd
+
 import tensorflow as tf
 from keras import layers
 from keras.models import load_model
+
 import text_cleaning as tc
 
 
@@ -51,7 +53,7 @@ def home():
 def predict():
     new_data = request.form["tweet_text"]
     temp_df = pd.DataFrame(np.array(new_data).reshape(-1, 1), columns=['tweet_text'])
-    cleaned_text = temp_df["tweet_text"].apply(tc.clean_text)
+    cleaned_text = temp_df["tweet_text"].apply(tc.clean_data)
     vectorized_text = vectorize_layer(cleaned_text)
     
     # predictions
@@ -69,7 +71,7 @@ def predict_api():
     '''
     request_json = request.get_json()
     temp_df = pd.DataFrame(request_json)
-    cleaned_text = temp_df["input"].apply(tc.clean_text)
+    cleaned_text = temp_df["input"].apply(tc.clean_data)
     vectorized_text = vectorize_layer(cleaned_text)
 
     # predictions

@@ -1,30 +1,31 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Sat Dec  3 13:52:00 2022
-
-@author: Polat
-"""
-
+# Text cleaning 
 import re
 import nltk
 nltk.download('wordnet')
 nltk.download('omw-1.4')
+nltk.download("stopwords")
+
+from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
 
 
-nltk.download("stopwords")
-from nltk.corpus import stopwords
+# Pre-compile regex patterns
+user_mention_pattern = re.compile(r"[@&]\w*")
+url_pattern = re.compile(r"https?:\S*")
+non_alphabetic_pattern = re.compile(r"[^A-Za-z#]")
 
-
-# for cleaning tweets
+# Initialize stemmer, lemmatizer, and stopwords list once
+# ps = PorterStemmer()
 lemmatizer = WordNetLemmatizer()
+stop_words = set(stopwords.words("english"))
 
 def clean_data(tweet):
-    tweet = re.sub("[@&]\w*", "", tweet)
-    tweet = re.sub("https?:\S*", "", tweet)
-    tweet = re.sub("[^A-Za-z#]", " ", tweet)
+    tweet = user_mention_pattern.sub("", tweet)
+    tweet = url_pattern.sub("", tweet)
+    tweet = non_alphabetic_pattern.sub(" ", tweet)
     tweet = tweet.lower()
-    tweet = [lemmatizer.lemmatize(word) for word in tweet.split() if word not in stopwords.words("english")]
-    tweet = " ".join(tweet)
-
-    return tweet
+    tweet = [
+        lemmatizer.lemmatize(word) for word in tweet.split()
+        if word not in stop_words
+    ]
+    return " ".join(tweet)
