@@ -30,7 +30,7 @@ model.compile(optimizer=tf.optimizers.RMSprop(1e-3),
               metrics=["accuracy"])
 
 # Adapt vectorization layer
-cleaned_tweets_df = pd.read_csv("data/cleaned_tweets.csv")
+cleaned_tweets_df = pd.read_csv("../data/cleaned_tweets.csv")
 cleaned_tweets_df.dropna(inplace=True)
 
 vectorize_layer = tf.keras.layers.TextVectorization(

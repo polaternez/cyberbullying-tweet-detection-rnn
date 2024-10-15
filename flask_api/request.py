@@ -1,5 +1,6 @@
 import requests
 
+
 url = "http://localhost:5000/predict_api"
 data = {"input": [
     'In other words #katandandre, your food was crapilicious! #mkr', 
