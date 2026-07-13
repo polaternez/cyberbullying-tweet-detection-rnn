@@ -8,8 +8,8 @@ This project aims to develop a tool for identifying cyberbullying tweets and cla
 - Implementing a client-facing API using Flask for seamless integration and usability.
 
 ## Technologies and Resources
-* **Python Version:** 3.10  
-* **Libraries:** numpy, pandas, matplotlib, seaborn, nltk, tensorflow, scikit-learn, flask, json  
+* **Python Version:** 3.12 
+* **Libraries:** numpy, pandas, matplotlib, seaborn, nltk, tensorflow, scikit-learn, flask
 * **Flask API Setup:**
   * ```pip install -r requirements.txt```  
   *  ```conda env create -n <ENVNAME> -f environment.yaml```  (Anaconda environment)
