@@ -1,17 +1,18 @@
-import json
-from flask import Flask, request, render_template
+import os
+os.environ['TF_ENABLE_ONEDNN_OPTS'] = '0'
+
+from flask import Flask, request, render_template, jsonify
 import numpy as np
 import pandas as pd
 import tensorflow as tf
 from keras.models import load_model
 
-import text_cleaning as tc
+from text_cleaning import TextCleaner
 
 
 VOCAB_SIZE = 50000  # vocabulary size
 MAX_LEN = 200
 
-# cyberbullying types
 LABEL_MAPPING = {
     0: 'not_cyberbullying',
     1: 'gender',
@@ -21,16 +22,19 @@ LABEL_MAPPING = {
     5: 'ethnicity'
 }
 
-# Load and compile model
-MODEL_PATH = "models/cyberbullying_lstm.h5"
-model = load_model(MODEL_PATH,  compile=False)
-model.compile(optimizer=tf.optimizers.RMSprop(1e-3),
-              loss="categorical_crossentropy",
-              metrics=["accuracy"])
+# Initialize Flask app
+app = Flask(__name__)
+
+# Load the model
+MODEL_PATH = "models/cyberbullying_lstm.keras"
+model = load_model(MODEL_PATH)
+
+# Handles text cleaning
+cleaner = TextCleaner()
 
 # Prepare vectorization layer
 def prepare_vectorization_layer():
-    df = pd.read_csv("../data/cleaned_tweets.csv")
+    df = pd.read_csv("../data/tweets_clean.csv")
     df.dropna(inplace=True)
 
     vectorize_layer = tf.keras.layers.TextVectorization(
@@ -44,49 +48,54 @@ def prepare_vectorization_layer():
 
 vectorize_layer = prepare_vectorization_layer()
 
-# Initialize Flask app
-app = Flask(__name__)
 
 @app.route("/")
 def home():
     return render_template("index.html")
 
+
 @app.route("/predict", methods=["POST"])
 def predict():
     try:
         tweet_text = request.form["tweet_text"]
-        cleaned_text = tc.clean_data(tweet_text)
+        cleaned_text = cleaner.clean(tweet_text)
         vectorized_text = vectorize_layer([cleaned_text])
         
-        # predictions
+        # Predictions
         prediction = model.predict(vectorized_text.numpy())
         predicted_label = LABEL_MAPPING[np.argmax(prediction)]
 
-        return render_template("index.html", prediction_text=predicted_label, tweet=f"<< {tweet_text} >>")
+        return render_template(
+            "index.html", 
+            prediction_text=predicted_label, 
+            tweet=f"<< {tweet_text} >>"
+        )
     except Exception as e:
-        return render_template("index.html", prediction_text="Error: " + str(e))
+        return render_template("index.html", prediction_text=f"Error: {str(e)}")
+
 
 @app.route("/predict_api", methods=["POST"])
 def predict_api():
     '''
-    For direct API calls trought request
+    Handles direct API calls via JSON payload
     '''
     try:
         data = request.get_json()
         if not data or "input" not in data:
-            return json.dumps({"error": "Invalid input"}), 400
+            return jsonify({"error": "Invalid input layout. Expected JSON key 'input'"}), 400
         
         df = pd.DataFrame(data)
-        cleaned_text = df["input"].apply(tc.clean_data)
+        cleaned_text = df["input"].apply(cleaner.clean)
         vectorized_text = vectorize_layer(cleaned_text)
 
-        # predictions
+        # Predictions
         prediction = model.predict(vectorized_text.numpy())
         predicted_labels = [LABEL_MAPPING[np.argmax(pred)] for pred in prediction]
         
-        return json.dumps({'response': predicted_labels}), 200
+        return jsonify({'response': predicted_labels}), 200
     except Exception as e:
-        return json.dumps({"error": str(e)}), 500
+        return jsonify({"error": str(e)}), 500
+
 
 if __name__ == "__main__":
     app.run(debug=True)
